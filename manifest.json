@@ -1,0 +1,48 @@
+{
+    "manifest_version": 3,
+    "name": "Bookmarker",
+    "version": "0.0.1",
+    "description": "Youtube Video Bookmarker",
+    "permissions": ["storage", "tabs"],
+    "host_permissions": ["https://*.youtube.com/*"],
+    "background": {
+        "service_worker": "background.js",
+        "type": "module"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://*.youtube.com/*"],
+            "js": ["contentScript.js"]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "assets/bookmark.png",
+                "assets/play.png",
+                "assets/delete.png",
+                "assets/save.png",
+                "utils.js"
+            ],
+            "matches": ["https://*.youtube.com/*"]
+        }
+    ],
+    "icons": {
+        "16": "./assets/logo16.png",
+        "48": "./assets/logo48.png",
+        "128": "./assets/logo128.png"
+    },
+    "action": {
+        "default_icon": "./assets/logo128.png",
+        "default_title": "Youtube Timestamp Bookmarker",
+        "default_popup": "./popup/popup.html"
+    },
+    "commands": {
+        "TIMESTAMP": {
+            "suggested_key": {
+                "windows": "Ctrl+B"
+            },
+            "description": "This will bookmark current timestamp"
+        }
+    }
+}
